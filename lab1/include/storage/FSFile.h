@@ -10,13 +10,6 @@ namespace taco {
  */
 class FSFile {
 public:
-	
-	FSFile(std::string path, int fd){
-			file_desc = fd;
-			is_open = true;
-			f_path = path;
-	}
-	
     /*!
      * Opens or creates a file in the file system for read and write. Returns a
      * non-null pointer on success. The boolean parameters \p o_trunc, \p
@@ -35,7 +28,6 @@ public:
     static FSFile *Open(const std::string& path, bool o_trunc,
                         bool o_direct, bool o_creat,
                         mode_t mode = 0600);
-
 
     /*!
      * Desctructs the FSFile. If the underlying file is still opened, it should
@@ -120,10 +112,6 @@ public:
 
 private:
     // TODO implement it
-	//
-	int file_desc;
-	bool is_open = false;
-	std::string f_path;
 };
 
 /*!
