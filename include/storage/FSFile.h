@@ -10,6 +10,14 @@ namespace taco {
  */
 class FSFile {
 public:
+
+     FSFile(std::string path, int fd, bool o_direct) {
+        is_file_open_ = true;
+        fd_ = fd;
+        file_path_ = path;
+        o_direct_ = o_direct;
+    }
+ 
     /*!
      * Opens or creates a file in the file system for read and write. Returns a
      * non-null pointer on success. The boolean parameters \p o_trunc, \p
@@ -110,8 +118,49 @@ public:
      */
     void Flush();
 
+    void set_fd(int fd) {
+        fd_ = fd;
+    }
+
+    int get_fd() const {
+        return fd_;
+    }
+
+    void set_file_path(std::string file_path) {
+        file_path_ = file_path; 
+    }
+
+    std::string get_file_path() const {
+        return file_path_;
+    }
+
+    void set_file_open(bool is_file_open) {
+        is_file_open_ = is_file_open;
+    }
+
+    bool is_file_open() const {
+        return is_file_open_;
+    }
+    
+    bool get_o_direct() {
+        return o_direct_;
+    }
+   
+    void set_size(size_t size) {
+        size_ = size;
+    }
+
+    size_t get_size() const {
+        return size_;
+    }
+
 private:
-    // TODO implement it
+    int fd_;
+    bool is_file_open_ = false;
+    std::string file_path_;
+    bool o_direct_ = false; 
+    size_t size_ = -1;
+
 };
 
 /*!
