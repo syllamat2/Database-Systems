@@ -18,26 +18,9 @@ FSFile::Open(const std::string& path, bool o_trunc,
     // Run "man 2 open" in the shell for details.
 
     //TODO implement it
-    	
-	int flags;
-	
-	if(o_trunc)
-		flags = O_RDWR | O_TRUNC;
-	
-	if(o_direct)
-		flags = O_RDWR | O_DIRECT;
-
-	if(o_creat)
-		flags = O_RDWR | O_CREAT;
-	
-	int f_d = open(path.c_str(), flags, mode);
-	
-	if(f_d < 0)	
-		return nullptr;
-	
-	return new FSFile(path, f_d);
+    return nullptr;
 }
-/*
+
 FSFile::~FSFile() {
     //TODO implement it
 }
@@ -111,5 +94,5 @@ FSFile::Flush() {
     // Hint: use fsync(2) or fdatasync(2).
     //TODO implement it
 }
-*/
+
 }   // namespace taco
